@@ -19,4 +19,4 @@ jobs:
         distribution: 'corretto'
         
     - name: Construction et tests avec Maven
-      run: mvn -B package
+      run: mvn -B verify
