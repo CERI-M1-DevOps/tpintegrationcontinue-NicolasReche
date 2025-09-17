@@ -37,6 +37,13 @@ public class ListeSimple {
             courant.setElement(nouvelleValeur);
     }
 
+    /**
+     * Modifie toutes les occurrences d'un élément dans la liste
+     * Parcourt toute la liste et remplace chaque occurrence de l'élément recherché
+     * par la nouvelle valeur spécifiée
+     * @param element l'élément à rechercher et remplacer dans la liste
+     * @param nouvelleValeur la nouvelle valeur à affecter aux éléments trouvés
+     */
     public void modifieTous(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
@@ -123,7 +130,6 @@ public class ListeSimple {
     }
 
     public Noeud getPrecedent(Noeud r) {
-    // la liste n'est pas vide puisqu'on transmet un Node de la liste et le Node existe obligatoirement
         Noeud precedent = tete;
         Noeud courant = precedent.getSuivant();
         while (courant != r) {
@@ -136,7 +142,8 @@ public class ListeSimple {
     public void echanger(Noeud r1, Noeud r2) {
         if (r1 == r2)
             return;
-        Noeud precedentR1, precedentR2;
+        Noeud precedentR1;
+        Noeud precedentR2;
         if (r1 != tete && r2 != tete) {
             precedentR1 = getPrecedent(r1);
             precedentR2 = getPrecedent(r2);
@@ -146,8 +153,7 @@ public class ListeSimple {
             precedentR2 = getPrecedent(r2);
             precedentR2.setSuivant(tete);
             tete = r2;
-        }
-        else if (r2 == tete) {
+        } else {
             precedentR1 = getPrecedent(r1);
             precedentR1.setSuivant(tete);
             tete = r1;
@@ -156,5 +162,4 @@ public class ListeSimple {
         r2.setSuivant(r1.getSuivant());
         r1.setSuivant(temp);
     }
-
 }
