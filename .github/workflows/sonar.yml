@@ -33,9 +33,5 @@ jobs:
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ajoutez cette ligne
-        run: |
-          mvn -B verify sonar:sonar \
-          -Dsonar.login=$SONAR_TOKEN \
-          -Dsonar.github.repository=${{ github.repository }} \
-          -Dsonar.projectKey=tpintegrationcontinue-$(echo ${{ github.repository }} | cut -d'/' -f2)
+        run:
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar-Dsonar.projectKey=$(echo ${{ github.repository }} | sed 's-/-_-')
