@@ -8,6 +8,7 @@ public class ListeSimple {
         return size;
     }
 
+
     public void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;

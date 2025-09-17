@@ -17,6 +17,16 @@ jobs:
       with:
         java-version: '21'
         distribution: 'corretto'
+
+    #exrercice 4 --
+    #- name: Cache Maven packages
+     # uses: actions/cache@v4
+     # with:
+      #  path: ~/.m2/repository
+       # key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+       # restore-keys: |
+        #  ${{ runner.os }}-maven-
+    #fin exercice 4 --
         
     - name: Construction et tests avec Maven
       run: mvn -B verify
