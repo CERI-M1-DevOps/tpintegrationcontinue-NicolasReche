@@ -1,6 +1,6 @@
 package liste;
 
-public class ListeSimple {
+class ListeSimple {
     private long size;
     Noeud tete;
 
@@ -8,7 +8,7 @@ public class ListeSimple {
      * Retourne la taille actuelle de la liste
      * @return le nombre d'éléments contenus dans la liste
      */
-    public long getSize() {
+    long getSize() {
         return size;
     }
 
@@ -17,7 +17,7 @@ public class ListeSimple {
      * La complexité de cette opération est constante (O(1))
      * @param element l'élément à ajouter en tête de liste
      */
-    public void ajout(int element) {
+    void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;
     }
@@ -29,7 +29,7 @@ public class ListeSimple {
      * @param element l'élément à rechercher dans la liste
      * @param nouvelleValeur la nouvelle valeur à affecter à l'élément trouvé
      */
-    public void modifiePremier(Object element, Object nouvelleValeur) {
+    void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null && courant.getElement() != element)
             courant = courant.getSuivant();
@@ -44,7 +44,7 @@ public class ListeSimple {
      * @param element l'élément à rechercher et remplacer dans la liste
      * @param nouvelleValeur la nouvelle valeur à affecter aux éléments trouvés
      */
-    public void modifieTous(Object element, Object nouvelleValeur) {
+    void modifieTous(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
             if (courant.getElement() == element)
@@ -53,7 +53,7 @@ public class ListeSimple {
         }
     }
 
-    public String toString() {
+    String toString() {
         StringBuilder sb = new StringBuilder("ListeSimple(");
         Noeud n = tete;
         while (n != null) {
@@ -66,7 +66,7 @@ public class ListeSimple {
         return sb.toString();
     }
 
-    public void supprimePremier(Object element) {
+    void supprimePremier(Object element) {
         if (tete != null) {
             if (tete.getElement() == element) {
                 tete = tete.getSuivant();
@@ -86,11 +86,11 @@ public class ListeSimple {
         }
     }
 
-    public void supprimeTous(int element) {
+    void supprimeTous(int element) {
        tete = supprimeTousRecurs(element, tete);
     }
 
-    public Noeud supprimeTousRecurs(Object element, Noeud tete) {
+    Noeud supprimeTousRecurs(Object element, Noeud tete) {
         if (tete != null) {
             Noeud suiteListe = supprimeTousRecurs(element, tete.getSuivant());
             if (tete.getElement() == element) {
@@ -103,7 +103,7 @@ public class ListeSimple {
         } else return null;
     }
 
-    public Noeud getAvantDernier() {
+    Noeud getAvantDernier() {
         if (tete == null || tete.getSuivant() == null)
             return null;
         else {
@@ -117,7 +117,7 @@ public class ListeSimple {
         }
     }
 
-    public void inverser() {
+    void inverser() {
         Noeud precedent = null;
         Noeud courant = tete;
         while (courant != null) {
@@ -129,7 +129,7 @@ public class ListeSimple {
         tete = precedent;
     }
 
-    public Noeud getPrecedent(Noeud r) {
+    Noeud getPrecedent(Noeud r) {
         Noeud precedent = tete;
         Noeud courant = precedent.getSuivant();
         while (courant != r) {
@@ -139,7 +139,7 @@ public class ListeSimple {
         return precedent;
     }
 
-    public void echanger(Noeud r1, Noeud r2) {
+    void echanger(Noeud r1, Noeud r2) {
         if (r1 == r2)
             return;
         Noeud precedentR1;
