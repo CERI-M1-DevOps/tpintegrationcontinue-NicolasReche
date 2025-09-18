@@ -2,8 +2,11 @@ package liste;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class ListeSimpleTest {
 
@@ -96,18 +99,24 @@ class ListeSimpleTest {
         assertEquals(sizeAttendu, listeATester.getSize());
     }
 
-    // Ou ajoutez ce test spécifique si vous préférez garder un test séparé pour la suppression en tête :
-    @Test
-    void supprimePremierEnPremierePosition() {
+    @ParameterizedTest
+    @CsvSource({
+        "3, 'ListeSimple(Noeud(2), Noeud(1))', 2",     // suppression en première position (tête)
+        "1, 'ListeSimple(Noeud(3), Noeud(2))', 2",     // suppression du dernier élément
+        "99, 'ListeSimple(Noeud(3), Noeud(2), Noeud(1))', 3"  // élément inexistant (parcours complet sans trouver)
+    })
+    void supprimePremierCasSpecifiques(int elementASupprimer, String resultatAttendu, int sizeAttendu) {
+        // Préparer la liste : [3, 2, 1] (dans l'ordre d'affichage)
         listeATester.ajout(1);
         listeATester.ajout(2);
         listeATester.ajout(3);
         
-        // Test spécifique pour couvrir le cas où if (tete.getElement() == element) est true
-        listeATester.supprimePremier(3); // Supprimer la tête
+        // Supprimer l'élément
+        listeATester.supprimePremier(elementASupprimer);
         
-        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
-        assertEquals(2, listeATester.getSize());
+        // Vérifications
+        assertEquals(resultatAttendu, listeATester.toString());
+        assertEquals(sizeAttendu, listeATester.getSize());
     }
 
     @Test
