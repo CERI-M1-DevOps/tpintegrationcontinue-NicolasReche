@@ -301,4 +301,18 @@ class ListeSimpleTest {
         assertEquals(3, listeATester.getSize());
         assertEquals(2, listeATester.tete.getSuivant().getElement());
     }
+
+    @Test
+    void modifiePremierElementTrouveEnFinDeBoucle() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.ajout(4);
+        
+        // L'élément à modifier est le dernier, donc la boucle parcourt toute la liste
+        listeATester.modifiePremier(1, 100);
+        
+        assertEquals("ListeSimple(Noeud(4), Noeud(3), Noeud(2), Noeud(100))", listeATester.toString());
+        assertEquals(100, listeATester.tete.getSuivant().getSuivant().getSuivant().getElement());
+    }
 }
