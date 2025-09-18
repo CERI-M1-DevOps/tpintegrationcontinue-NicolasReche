@@ -162,6 +162,33 @@ class ListeSimpleTest {
     }
 
     @Test
+    void supprimePremierDernierElement() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        
+        // Test spécifique pour couvrir le cas où courant != null dans le if final
+        listeATester.supprimePremier(1); // Dernier élément
+        
+        assertEquals("ListeSimple(Noeud(3), Noeud(2))", listeATester.toString());
+        assertEquals(2, listeATester.getSize());
+    }
+
+    @Test
+    void supprimePremierParcoursCompletSansTrouver() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        
+        // Test où la boucle while parcourt toute la liste sans trouver l'élément
+        listeATester.supprimePremier(99);
+        
+        // Vérifie que la liste est intacte
+        assertEquals("ListeSimple(Noeud(3), Noeud(2), Noeud(1))", listeATester.toString());
+        assertEquals(3, listeATester.getSize());
+    }
+
+    @Test
     void avantDernierListeVide() {
         assertNull(listeATester.getAvantDernier());
     }
