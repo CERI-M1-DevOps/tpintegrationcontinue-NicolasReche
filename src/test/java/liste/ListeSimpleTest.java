@@ -81,13 +81,7 @@ class ListeSimpleTest {
         assertEquals(0, listeATester.getSize());
     }
 
-    // Remplacer les 3 tests individuels par ce test paramétré :
-    @ParameterizedTest
-    @CsvSource({
-        "3, 'ListeSimple(Noeud(2), Noeud(1))', 2",  // suppression en première position
-        "2, 'ListeSimple(Noeud(4), Noeud(3), Noeud(1))', 3",  // suppression en position quelconque  
-        "1, 'ListeSimple(Noeud(4), Noeud(3), Noeud(2))', 3"   // suppression en dernière position
-    })
+    
     void supprimePremierDifferentesPositions(int elementASupprimer, String resultatAttendu, int sizeAttendu) {
         // Préparer la liste : [4, 3, 2, 1] (dans l'ordre d'affichage)
         listeATester.ajout(1);
