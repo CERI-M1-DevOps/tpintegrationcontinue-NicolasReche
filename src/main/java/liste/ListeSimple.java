@@ -12,12 +12,13 @@ public class ListeSimple {
         return size;
     }
 
-    
+
     /**
      * Ajoute un nouvel élément en tête de liste
      * La complexité de cette opération est constante (O(1))
      * @param element l'élément à ajouter en tête de liste
      */
+    //test pour le cache
     public void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;
