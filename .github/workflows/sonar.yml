@@ -20,13 +20,13 @@ jobs:
           distribution: 'corretto'
 
       #erxercice 4 --    
-      #- name: Cache Sonar packages
-      #  uses: actions/cache@v4
-       # with:
-       #  path: ~/.sonar/cache
-       #  key: ${{ runner.os }}-sonar-${{ hashFiles('**/pom.xml') }}
-       #  restore-keys: |
-        #   ${{ runner.os }}-sonar-
+      - name: Cache Sonar packages
+        uses: actions/cache@v4
+        with:
+         path: ~/.sonar/cache
+         key: ${{ runner.os }}-sonar-${{ hashFiles('**/pom.xml') }}
+         restore-keys: |
+           ${{ runner.os }}-sonar-
       #fin exercice 4 --
 
 

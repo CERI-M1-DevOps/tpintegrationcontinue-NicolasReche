@@ -12,6 +12,7 @@ public class ListeSimple {
         return size;
     }
 
+    
     /**
      * Ajoute un nouvel élément en tête de liste
      * La complexité de cette opération est constante (O(1))
