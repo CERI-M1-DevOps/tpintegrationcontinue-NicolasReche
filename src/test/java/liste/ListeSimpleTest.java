@@ -81,36 +81,26 @@ class ListeSimpleTest {
         assertEquals(0, listeATester.getSize());
     }
 
-    @Test
-    void supprimePremierEnPremierePosition() {
-        listeATester.ajout(1);
-        listeATester.ajout(2);
-        listeATester.ajout(3);
-        listeATester.supprimePremier(3);
-        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
-        assertEquals(2, listeATester.getSize());
-    }
-
-    @Test
-    void supprimePremierEnPositionQuelconque() {
-        listeATester.ajout(1);
-        listeATester.ajout(2);
-        listeATester.ajout(3);
-        listeATester.ajout(4);
-        listeATester.supprimePremier(2);
-        assertEquals("ListeSimple(Noeud(4), Noeud(3), Noeud(1))", listeATester.toString());
-        assertEquals(3, listeATester.getSize());
-    }
-
-    @Test
-    void supprimePremierEnDernierePosition() {
+    // Remplacer les 3 tests individuels par ce test paramétré :
+    @ParameterizedTest
+    @CsvSource({
+        "3, 'ListeSimple(Noeud(2), Noeud(1))', 2",  // suppression en première position
+        "2, 'ListeSimple(Noeud(4), Noeud(3), Noeud(1))', 3",  // suppression en position quelconque  
+        "1, 'ListeSimple(Noeud(4), Noeud(3), Noeud(2))', 3"   // suppression en dernière position
+    })
+    void supprimePremierDifferentesPositions(int elementASupprimer, String resultatAttendu, int sizeAttendu) {
+        // Préparer la liste : [4, 3, 2, 1] (dans l'ordre d'affichage)
         listeATester.ajout(1);
         listeATester.ajout(2);
         listeATester.ajout(3);
         listeATester.ajout(4);
-        listeATester.supprimePremier(1);
-        assertEquals("ListeSimple(Noeud(4), Noeud(3), Noeud(2))", listeATester.toString());
-        assertEquals(3, listeATester.getSize());
+        
+        // Supprimer l'élément
+        listeATester.supprimePremier(elementASupprimer);
+        
+        // Vérifications
+        assertEquals(resultatAttendu, listeATester.toString());
+        assertEquals(sizeAttendu, listeATester.getSize());
     }
 
     @Test
@@ -308,10 +298,6 @@ class ListeSimpleTest {
         listeATester.ajout(2);
         listeATester.ajout(3);
         
-        // Test où l'élément à modifier n'existe pas dans la liste
-        // Ceci couvre le cas où while (courant != null && courant.getElement() != element) 
-        // se termine avec courant == null
-        // Et aussi le cas où if (courant != null) est false
         listeATester.modifiePremier(99, 100);
         
         // Vérifier que la liste n'a pas changé
