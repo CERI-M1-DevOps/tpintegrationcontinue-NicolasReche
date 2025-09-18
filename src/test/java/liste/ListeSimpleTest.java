@@ -256,4 +256,22 @@ class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals("ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))", listeATester.toString());
     }
+
+    @Test
+    void echangerNoeudsIdentiques() {
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        
+        Noeud noeud = listeATester.tete.getSuivant(); 
+        String listeOriginale = listeATester.toString();
+        
+        // Tester le cas où r1 == r2
+        listeATester.echanger(noeud, noeud);
+        
+        
+        assertEquals(listeOriginale, listeATester.toString());
+        assertEquals(3, listeATester.getSize());
+        assertEquals(2, listeATester.tete.getSuivant().getElement());
+    }
 }
