@@ -81,7 +81,6 @@ class ListeSimpleTest {
         assertEquals(0, listeATester.getSize());
     }
 
-    
     void supprimePremierDifferentesPositions(int elementASupprimer, String resultatAttendu, int sizeAttendu) {
         // Préparer la liste : [4, 3, 2, 1] (dans l'ordre d'affichage)
         listeATester.ajout(1);
@@ -95,6 +94,20 @@ class ListeSimpleTest {
         // Vérifications
         assertEquals(resultatAttendu, listeATester.toString());
         assertEquals(sizeAttendu, listeATester.getSize());
+    }
+
+    // Ou ajoutez ce test spécifique si vous préférez garder un test séparé pour la suppression en tête :
+    @Test
+    void supprimePremierEnPremierePosition() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        
+        // Test spécifique pour couvrir le cas où if (tete.getElement() == element) est true
+        listeATester.supprimePremier(3); // Supprimer la tête
+        
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+        assertEquals(2, listeATester.getSize());
     }
 
     @Test
