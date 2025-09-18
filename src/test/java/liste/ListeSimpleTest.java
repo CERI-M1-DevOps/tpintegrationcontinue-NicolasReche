@@ -302,5 +302,33 @@ class ListeSimpleTest {
         assertEquals(2, listeATester.tete.getSuivant().getElement());
     }
 
+    @Test
+    void modifiePremierElementInexistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        
+        // Test où l'élément à modifier n'existe pas dans la liste
+        // Ceci couvre le cas où while (courant != null && courant.getElement() != element) 
+        // se termine avec courant == null
+        // Et aussi le cas où if (courant != null) est false
+        listeATester.modifiePremier(99, 100);
+        
+        // Vérifier que la liste n'a pas changé
+        assertEquals("ListeSimple(Noeud(3), Noeud(2), Noeud(1))", listeATester.toString());
+        assertEquals(3, listeATester.getSize());
+    }
+
+    @Test
+    void modifiePremierListeVide() {
+        // Test sur une liste vide pour couvrir le cas où courant est null dès le début
+        // Ceci couvre aussi les deux conditions mentionnées
+        listeATester.modifiePremier(1, 2);
+        
+        // Vérifier que la liste reste vide
+        assertNull(listeATester.tete);
+        assertEquals(0, listeATester.getSize());
+    }
+
     
 }
